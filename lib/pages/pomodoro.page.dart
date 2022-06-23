@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_pomodoro/components/InputTime.dart';
+import 'package:flutter_pomodoro/components/input_time.component.dart';
 
 class PomodoroPage extends StatelessWidget {
   const PomodoroPage({Key? key}) : super(key: key);
