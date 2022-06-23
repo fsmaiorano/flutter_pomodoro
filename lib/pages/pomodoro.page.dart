@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pomodoro/components/input_time.component.dart';
+import 'package:flutter_pomodoro/components/stop_watch.component.dart';
 
 class PomodoroPage extends StatelessWidget {
   const PomodoroPage({Key? key}) : super(key: key);
@@ -7,14 +8,20 @@ class PomodoroPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Pomodoro'),
-      ),
       body: Column(
-        children: const [
-          Text('Pomodoro'),
-          InputTime(title: 'Work', value: 25),
-          InputTime(title: 'Rest', value: 5)
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const Expanded(child: StopWatch()),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 40),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: const [
+                InputTime(title: 'Work', value: 25),
+                InputTime(title: 'Rest', value: 5)
+              ],
+            ),
+          )
         ],
       ),
     );

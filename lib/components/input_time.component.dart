@@ -10,9 +10,12 @@ class InputTime extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text(title),
+        Text(title, style: const TextStyle(fontSize: 25)),
+        const SizedBox(height: 10),
         Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
               onPressed: () => {},
@@ -23,7 +26,7 @@ class InputTime extends StatelessWidget {
               ),
               child: const Icon(Icons.arrow_downward, color: Colors.white),
             ),
-            Text(value.toString()),
+            Text('$value min', style: const TextStyle(fontSize: 18)),
             ElevatedButton(
               onPressed: () => {},
               style: ElevatedButton.styleFrom(
