@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_pomodoro/components/stop_watch_button.dart';
+import 'package:provider/provider.dart';
+
+import '../store/pomodoro.store.dart';
+import 'stop_watch_button.dart';
 
 class StopWatch extends StatelessWidget {
   const StopWatch({Key? key}) : super(key: key);
