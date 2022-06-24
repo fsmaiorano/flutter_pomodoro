@@ -5,6 +5,8 @@ part 'pomodoro.store.g.dart';
 // ignore: library_private_types_in_public_api
 class PomodoroStore = _PomodoroStore with _$PomodoroStore;
 
+enum TypeBreak { work, rest }
+
 abstract class _PomodoroStore with Store {
   @observable
   bool isRunning = false;
@@ -20,6 +22,9 @@ abstract class _PomodoroStore with Store {
 
   @observable
   int timeRest = 1;
+
+  @observable
+  TypeBreak typeBreak = TypeBreak.rest;
 
   @action
   void run() {
@@ -54,5 +59,15 @@ abstract class _PomodoroStore with Store {
   @action
   void decrementTimeRest() {
     timeRest--;
+  }
+
+  @action
+  bool isWork() {
+    return typeBreak == TypeBreak.work;
+  }
+
+  @action
+  bool isRest() {
+    return typeBreak == TypeBreak.rest;
   }
 }

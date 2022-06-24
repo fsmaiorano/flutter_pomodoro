@@ -13,14 +13,14 @@ class StopWatch extends StatelessWidget {
     final store = Provider.of<PomodoroStore>(context);
 
     return Container(
-      color: Colors.red,
+      color: store.isWork() ? Colors.red : Colors.green,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const Text(
-            'Work time',
-            style: TextStyle(
+          Text(
+            store.isWork() ? 'Work' : 'Rest',
+            style: const TextStyle(
               fontSize: 40,
               color: Colors.white,
             ),

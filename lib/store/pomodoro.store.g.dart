@@ -89,6 +89,22 @@ mixin _$PomodoroStore on _PomodoroStore, Store {
     });
   }
 
+  late final _$typeBreakAtom =
+      Atom(name: '_PomodoroStore.typeBreak', context: context);
+
+  @override
+  TypeBreak get typeBreak {
+    _$typeBreakAtom.reportRead();
+    return super.typeBreak;
+  }
+
+  @override
+  set typeBreak(TypeBreak value) {
+    _$typeBreakAtom.reportWrite(value, super.typeBreak, () {
+      super.typeBreak = value;
+    });
+  }
+
   late final _$_PomodoroStoreActionController =
       ActionController(name: '_PomodoroStore', context: context);
 
@@ -170,13 +186,36 @@ mixin _$PomodoroStore on _PomodoroStore, Store {
   }
 
   @override
+  bool isWork() {
+    final _$actionInfo = _$_PomodoroStoreActionController.startAction(
+        name: '_PomodoroStore.isWork');
+    try {
+      return super.isWork();
+    } finally {
+      _$_PomodoroStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  bool isRest() {
+    final _$actionInfo = _$_PomodoroStoreActionController.startAction(
+        name: '_PomodoroStore.isRest');
+    try {
+      return super.isRest();
+    } finally {
+      _$_PomodoroStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 isRunning: ${isRunning},
 minutes: ${minutes},
 seconds: ${seconds},
 timeWork: ${timeWork},
-timeRest: ${timeRest}
+timeRest: ${timeRest},
+typeBreak: ${typeBreak}
     ''';
   }
 }
