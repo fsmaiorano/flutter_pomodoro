@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import '../store/pomodoro.store.dart';
 
 class StopWatchButton extends StatelessWidget {
   final String text;
@@ -17,8 +14,6 @@ class StopWatchButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final store = Provider.of<PomodoroStore>(context);
-
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         primary: Colors.black,
@@ -27,7 +22,7 @@ class StopWatchButton extends StatelessWidget {
         ),
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
       ),
-      onPressed: () {},
+      onPressed: onPressed,
       child: Row(
         children: [
           Padding(

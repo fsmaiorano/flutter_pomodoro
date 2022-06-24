@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter_pomodoro/components/input_time.component.dart';
 import 'package:flutter_pomodoro/components/stop_watch.component.dart';
-import 'package:provider/provider.dart';
 
 import '../store/pomodoro.store.dart';
 
@@ -27,14 +27,22 @@ class PomodoroPage extends StatelessWidget {
                     InputTime(
                       title: 'Work',
                       value: store.timeWork,
-                      doIncrementTime: store.incrementTimeWork,
-                      doDecrementTime: store.decrementTimeWork,
+                      doIncrementTime: store.isRunning && store.isWork()
+                          ? null
+                          : store.incrementTimeWork,
+                      doDecrementTime: store.isRunning && store.isWork()
+                          ? null
+                          : store.decrementTimeWork,
                     ),
                     InputTime(
                       title: 'Rest',
                       value: store.timeRest,
-                      doIncrementTime: store.incrementTimeRest,
-                      doDecrementTime: store.decrementTimeRest,
+                      doIncrementTime: store.isRunning && store.isRest()
+                          ? null
+                          : store.incrementTimeRest,
+                      doDecrementTime: store.isRunning && store.isRest()
+                          ? null
+                          : store.decrementTimeRest,
                     ),
                   ],
                 ),
