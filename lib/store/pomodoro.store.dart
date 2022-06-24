@@ -4,6 +4,7 @@ import 'package:mobx/mobx.dart';
 
 part 'pomodoro.store.g.dart';
 
+// ignore: library_private_types_in_public_api
 class PomodoroStore = _PomodoroStore with _$PomodoroStore;
 
 enum TypeBreak { work, rest }
