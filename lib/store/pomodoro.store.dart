@@ -64,6 +64,7 @@ abstract class _PomodoroStore with Store {
   @action
   void incrementTimeWork() {
     timeWork++;
+
     if (isWork()) {
       restart();
     }
@@ -71,7 +72,10 @@ abstract class _PomodoroStore with Store {
 
   @action
   void decrementTimeWork() {
-    timeWork--;
+    if (timeWork > 0) {
+      timeWork--;
+    }
+
     if (isWork()) {
       restart();
     }
@@ -80,6 +84,7 @@ abstract class _PomodoroStore with Store {
   @action
   void incrementTimeRest() {
     timeRest++;
+
     if (isRest()) {
       restart();
     }
@@ -87,7 +92,10 @@ abstract class _PomodoroStore with Store {
 
   @action
   void decrementTimeRest() {
-    timeRest--;
+    if (timeRest > 0) {
+      timeRest--;
+    }
+
     if (isRest()) {
       restart();
     }
