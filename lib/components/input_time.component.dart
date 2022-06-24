@@ -4,7 +4,15 @@ class InputTime extends StatelessWidget {
   final String title;
   final int value;
 
-  const InputTime({Key? key, required this.title, required this.value})
+  final void Function()? doIncrementTime;
+  final void Function()? doDecrementTime;
+
+  const InputTime(
+      {Key? key,
+      required this.title,
+      required this.value,
+      required this.doIncrementTime,
+      required this.doDecrementTime})
       : super(key: key);
 
   @override
@@ -18,7 +26,7 @@ class InputTime extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
-              onPressed: () => {},
+              onPressed: doDecrementTime,
               style: ElevatedButton.styleFrom(
                 shape: const CircleBorder(),
                 padding: const EdgeInsets.all(15),
@@ -28,7 +36,7 @@ class InputTime extends StatelessWidget {
             ),
             Text('$value min', style: const TextStyle(fontSize: 18)),
             ElevatedButton(
-              onPressed: () => {},
+              onPressed: doIncrementTime,
               style: ElevatedButton.styleFrom(
                 shape: const CircleBorder(),
                 padding: const EdgeInsets.all(15),

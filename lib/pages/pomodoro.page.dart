@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_pomodoro/components/input_time.component.dart';
 import 'package:flutter_pomodoro/components/stop_watch.component.dart';
 import 'package:provider/provider.dart';
@@ -18,15 +19,26 @@ class PomodoroPage extends StatelessWidget {
         children: [
           const Expanded(child: StopWatch()),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 40),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                InputTime(title: 'Work', value: store.timeWork),
-                InputTime(title: 'Rest', value: store.timeRest),
-              ],
-            ),
-          )
+              padding: const EdgeInsets.symmetric(vertical: 40),
+              child: Observer(
+                builder: (_) => Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    InputTime(
+                      title: 'Work',
+                      value: store.timeWork,
+                      doIncrementTime: store.incrementTimeWork,
+                      doDecrementTime: store.decrementTimeWork,
+                    ),
+                    InputTime(
+                      title: 'Rest',
+                      value: store.timeRest,
+                      doIncrementTime: store.incrementTimeRest,
+                      doDecrementTime: store.decrementTimeRest,
+                    ),
+                  ],
+                ),
+              ))
         ],
       ),
     );

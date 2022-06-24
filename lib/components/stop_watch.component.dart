@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
 
 import '../store/pomodoro.store.dart';
@@ -9,6 +10,8 @@ class StopWatch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final store = Provider.of<PomodoroStore>(context);
+
     return Container(
       color: Colors.red,
       child: Column(
@@ -23,30 +26,46 @@ class StopWatch extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
-          const Text(
-            '25:00',
-            style: TextStyle(
+          Text(
+            '${store.minutes.toString().padLeft(2, '0')}:${store.seconds.toString().padLeft(2, '0')}',
+            style: const TextStyle(
               fontSize: 120,
               color: Colors.white,
             ),
           ),
           const SizedBox(height: 20),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Padding(
-                  padding: EdgeInsets.only(right: 10),
-                  child:
-                      StopWatchButton(text: "Start", icon: Icons.play_arrow)),
-              // Padding(
-              //     padding: EdgeInsets.only(right: 10),
-              //     child: StopWatchButton(text: "Stop", icon: Icons.stop)),
-              Padding(
-                padding: EdgeInsets.only(left: 10),
-                child: StopWatchButton(text: "Restart", icon: Icons.refresh),
-              ),
-            ],
-          )
+          Observer(
+              builder: (_) => Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      if (!store.isRunning)
+                        Padding(
+                          padding: const EdgeInsets.only(right: 10),
+                          child: StopWatchButton(
+                            text: "Start",
+                            icon: Icons.play_arrow,
+                            onPressed: store.run,
+                          ),
+                        ),
+                      if (store.isRunning)
+                        Padding(
+                          padding: const EdgeInsets.only(right: 10),
+                          child: StopWatchButton(
+                            text: "Stop",
+                            icon: Icons.stop,
+                            onPressed: store.stop,
+                          ),
+                        ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: StopWatchButton(
+                          text: "Restart",
+                          icon: Icons.refresh,
+                          onPressed: store.restart,
+                        ),
+                      ),
+                    ],
+                  ))
         ],
       ),
     );

@@ -3,8 +3,13 @@ import 'package:flutter/material.dart';
 class StopWatchButton extends StatelessWidget {
   final String text;
   final IconData icon;
+  final void Function()? onPressed;
 
-  const StopWatchButton({Key? key, required this.text, required this.icon})
+  const StopWatchButton(
+      {Key? key,
+      required this.text,
+      required this.icon,
+      required this.onPressed})
       : super(key: key);
 
   @override
